@@ -1,18 +1,35 @@
 ---
 ---
 
-<html lang="de">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Salsa with Niusha</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Salsa Classes in Linz | Niusha Dance</title>
+
+    <meta
+      name="description"
+      content="Salsa Solo classes, styling, workshops and private lessons with Niusha in Linz. Improve your technique, musicality and confidence."
+    />
+
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:title" content="Niusha Dance | Salsa Classes in Linz" />
+    <meta
+      property="og:description"
+      content="Salsa Solo classes, styling, workshops and private lessons in Linz."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/images/niusha-hero.jpeg" />
+    <link rel="icon" type="image/svg+xml" href="/niusha-dance-icon.svg" />
   </head>
 
   <body>
 
     <header>
       <nav>
-      <div class="logo">Niusha Salsa</div>
+      <div class="logo">Niusha Dance</div>
 
       <button
       class="menu-button"
@@ -27,6 +44,7 @@
     <a href="#about">About</a>
     <a href="#classes">Classes</a>
     <a href="#schedule">Schedule</a>
+    <a href="#events">Events</a>
     <a href="#gallery">Gallery</a>
     <a href="#contact">Contact</a>
   </div>
@@ -65,7 +83,7 @@
 
           <img
             src="/images/niusha-hero.jpeg"
-            alt="Niusha Salsa Instructor"
+            alt="Niusha Dance Instructor"
           />
 
         </div>
@@ -287,6 +305,136 @@
 
   </div>
 </section>
+  <!-- EVENTS -->
+<section class="events" id="events">
+
+  <div class="events-heading">
+    <p class="eyebrow">Events</p>
+
+    <h2>
+      Meet me on the
+      <span>dance floor.</span>
+    </h2>
+
+    <p>
+      <p>
+      Workshops, festivals, performances and special events
+      where you can find me on the dance floor.
+    </p>
+    </p>
+  </div>
+
+
+  <div class="events-grid">
+
+    <!-- EVENT 1 -->
+    <article class="event-card">
+
+      <div class="event-flyer">
+        <span>Flyer coming soon</span>
+      </div>
+
+      <div class="event-info">
+
+        <p class="event-date">
+          12 October 2026
+        </p>
+
+        <h3>
+          Salsa Festival
+        </h3>
+
+        <p class="event-location">
+          Linz, Austria
+        </p>
+
+        <a
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="event-link"
+        >
+          View event →
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- EVENT 2 -->
+    <article class="event-card">
+
+      <div class="event-flyer">
+        <span>Flyer coming soon</span>
+      </div>
+
+      <div class="event-info">
+
+        <p class="event-date">
+          25 October 2026
+        </p>
+
+        <h3>
+          Salsa Styling Workshop
+        </h3>
+
+        <p class="event-location">
+          Vienna, Austria
+        </p>
+
+        <a
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="event-link"
+        >
+          View event →
+        </a>
+
+      </div>
+
+    </article>
+
+    <!-- EVENT 3 -->
+<article class="event-card">
+
+  <div class="event-flyer">
+    <span>Flyer coming soon</span>
+  </div>
+
+  <div class="event-info">
+
+  
+
+    <p class="event-date">
+      8 November 2026
+    </p>
+
+    <h3>
+      Salsa Show
+    </h3>
+
+    <p class="event-location">
+      Linz, Austria
+    </p>
+
+    <a
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="event-link"
+    >
+      View event →
+    </a>
+
+  </div>
+
+</article>
+
+  </div>
+
+</section>
   <!-- GALLERY -->
   <section class="gallery" id="gallery">
 
@@ -362,7 +510,9 @@
 <footer>
   <div class="footer-inner">
 
-    <p>© 2026 Niusha Salsa</p>
+    <p>© 2026 Niusha Dance</p>
+
+    
 
     <div class="footer-links">
       <a href="/impressum">Impressum</a>
@@ -372,6 +522,9 @@
   </div>
 </footer>
     </main>
+    <a href="#" class="back-to-top" aria-label="Back to top">
+    ↑
+    </a>
 <script>
   const menuButton = document.querySelector("#menu-button");
   const navLinks = document.querySelector("#nav-links");
@@ -953,12 +1106,43 @@ footer {
 
   font-size: 0.85rem;
 }
+.back-to-top {
+  position: fixed;
 
-.footer-links {
+  left: 50%;
+  bottom: 24px;
+
+  transform: translateX(-50%);
+
+  width: 46px;
+  height: 46px;
+
   display: flex;
-  gap: 25px;
+  align-items: center;
+  justify-content: center;
+
+  background: #211d1b;
+  border: 1px solid #a99e98;
+  border-radius: 50%;
+
+  color: #f4eee8;
+  text-decoration: none;
+  font-size: 1.3rem;
+
+  z-index: 50;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
+.back-to-top:hover {
+  background: #c89a9d;
+  color: #211d1b;
+
+  transform: translate(-50%, -3px);
+}
 .footer-links a {
   color: #a99e98;
   text-decoration: none;
@@ -1050,9 +1234,143 @@ h3 {
 .nav-links a:hover::after {
   width: 100%;
 }
+/* UPCOMING EVENTS */
+
+.events {
+  padding: 120px 8vw;
+  background: #e9ddd5;
+  color: #211d1b;
+  scroll-margin-top: 20px;
+}
+
+.events-heading {
+  max-width: 1300px;
+  margin: 0 auto 70px;
+}
+
+.events-heading h2 {
+  font-size: clamp(3rem, 6vw, 6rem);
+  line-height: 1;
+  font-weight: 500;
+  max-width: 850px;
+  margin-bottom: 30px;
+}
+
+.events-heading h2 span {
+  color: #a66f72;
+}
+
+.events-heading > p:last-child {
+  max-width: 600px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.events-grid {
+  max-width: 1300px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.event-card {
+  background: #f4eee8;
+}
+
+.event-flyer {
+  aspect-ratio: 4 / 5;
+
+  background: #d7c7bd;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #8c7d75;
+
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+}
+
+.event-info {
+  padding: 30px;
+}
+
+.event-date {
+  color: #a66f72;
+
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+
+  font-size: 0.8rem;
+
+  margin-bottom: 15px;
+}
+
+.event-info h3 {
+  font-size: 2rem;
+  font-weight: 500;
+
+  margin-bottom: 10px;
+}
+
+.event-location {
+  margin-bottom: 25px;
+  color: #716761;
+}
+
+.event-link {
+  color: #211d1b;
+  text-decoration: none;
+
+  border-bottom: 1px solid #211d1b;
+
+  padding-bottom: 4px;
+
+  transition: color 0.3s ease;
+}
+
+.event-link:hover {
+  color: #a66f72;
+}
 /* MOBILE */
 
+.back-to-top {
+  align-self: center;
+}
+
 @media (max-width: 800px) {
+  /* EVENTS */
+
+.events {
+  padding: 90px 25px;
+}
+
+.events-grid {
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+.event-info {
+  padding: 25px;
+}
+.event-type {
+  width: fit-content;
+  margin-bottom: 12px;
+
+  padding: 6px 10px;
+
+  border: 1px solid #a66f72;
+
+  color: #a66f72;
+
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
   .classes,
   .contact,
 footer {
