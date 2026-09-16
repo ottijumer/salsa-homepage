@@ -6,11 +6,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Salsa Classes in Linz | Niusha Dance</title>
+    <title>Salsa Workshops in Linz | Niusha Dance</title>
 
     <meta
       name="description"
-      content="Salsa Solo classes, styling, workshops and private lessons with Niusha in Linz. Improve your technique, musicality and confidence."
+      content="Salsa Solo, partnerwork and private workshops with Niusha in Linz. Improve your technique, musicality and confidence."
     />
 
     <meta name="robots" content="index, follow" />
@@ -19,12 +19,12 @@
 
     <meta
       property="og:title"
-      content="Niusha Dance | Salsa Classes in Linz"
+      content="Niusha Dance | Salsa Workshops in Linz"
     />
 
     <meta
       property="og:description"
-      content="Salsa Solo classes, styling, workshops and private lessons in Linz."
+      content="Salsa Solo, partnerwork and private workshops with Niusha in Linz."
     />
 
     <meta property="og:type" content="website" />
@@ -47,7 +47,7 @@
       "name": "Niusha Mehranshad",
       "url": "https://niushadance.com/",
       "image": "https://niushadance.com/images/niusha-hero.jpeg",
-      "jobTitle": "Salsa Dance Instructor",
+      "jobTitle": "Salsa & Bachata Workshop Instructor",
       "sameAs": [
         "https://www.instagram.com/niushamehranshad/"
       ],
@@ -167,7 +167,7 @@
           </p>
 
           <p>
-          Today, I teach both solo and partnerwork classes, with a focus on technique,
+          Today, I share my passion through solo and partnerwork workshops, with a focus on technique,
           connection, musicality and style. My goal is to help you feel confident,
           natural and expressive on the dance floor.
           </p>
@@ -280,7 +280,7 @@
     </h2>
 
     <p class="schedule-intro">
-      Salsa Solo workshops in Linz — taught On2 and open to men and women,
+      Salsa Solo workshops in Linz — taught On2 and open to anyone
       who wants to improve technique, styling and confidence.
     </p>
   </div>
@@ -362,10 +362,8 @@
     </h2>
 
     <p>
-      <p>
       Workshops, festivals, performances and special events
       where you can find me on the dance floor.
-    </p>
     </p>
   </div>
 
@@ -524,7 +522,7 @@
 
     <p class="contact-text">
       Want to join a workshop, book a private session or invite me
-      for a event? Feel free to get in touch.
+      to an event? Feel free to get in touch.
     </p>
 
     <div class="contact-links">
@@ -566,6 +564,27 @@
     ↑
     </a>
 <script>
+  const menuButton = document.querySelector(".menu-button");
+  const navLinks = document.querySelector(".nav-links");
+
+  if (menuButton && navLinks) {
+    menuButton.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+
+      const isOpen = navLinks.classList.contains("open");
+
+      menuButton.textContent = isOpen ? "✕" : "☰";
+      menuButton.setAttribute("aria-expanded", isOpen.toString());
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuButton.textContent = "☰";
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
   const albums = {
     "summer-project": {
       title: "Summer Project, Salsa Partner Work 2026",
@@ -1218,11 +1237,14 @@ footer {
 
   transform: translate(-50%, -3px);
 }
+.footer-links {
+  display: flex;
+  gap: 25px;
+}
+
 .footer-links a {
   color: #a99e98;
   text-decoration: none;
-  display: flex;
-  gap: 25px;
 }
 /* GALLERY */
 
@@ -1611,6 +1633,7 @@ h3 {
 @media (max-width: 800px) {
   /* EVENTS */
 
+
 .events {
   padding: 90px 25px;
 }
@@ -1702,8 +1725,9 @@ footer {
   }
 
   .hero-text {
-    min-height: 70vh;
-    padding: 130px 25px 60px;
+  min-height: auto;
+  padding: 85px 25px 80px;
+  justify-content: flex-start;
   }
 
   .hero-image {
