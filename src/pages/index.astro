@@ -450,8 +450,8 @@
 
 </section>
 
-  <!-- GALLERY -->
-  <section class="gallery" id="gallery">
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
 
   <div class="gallery-heading">
     <p class="eyebrow">Gallery</p>
@@ -469,7 +469,7 @@
 
   <div class="album-grid">
 
-    <!-- ALBUM 1 -->
+    <!-- PHOTO ALBUM -->
     <button
       class="album-card"
       data-album="summer-project"
@@ -487,10 +487,40 @@
         <p>View album →</p>
       </div>
     </button>
-  </div>
-</section>
-<div class="gallery-modal" id="gallery-modal" aria-hidden="true">
 
+
+    <!-- VIDEO -->
+    <button
+      class="video-card"
+      id="video-open"
+      aria-label="Open Summer Project 2026 video"
+    >
+      <div class="video-cover">
+        <img
+          src="/images/gallery/summer-project/Video-Cover.jpg"
+          alt="Summer Project 2026 Video"
+        />
+
+        <span class="video-play">▶</span>
+      </div>
+
+      <div class="album-info">
+        <h3>Summer Project 2026 - Video</h3>
+        <p>Watch video →</p>
+      </div>
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- PHOTO GALLERY MODAL -->
+<div
+  class="gallery-modal"
+  id="gallery-modal"
+  aria-hidden="true"
+>
   <button
     class="gallery-close"
     id="gallery-close"
@@ -503,11 +533,47 @@
 
     <h2 id="gallery-title"></h2>
 
-    <div class="gallery-images" id="gallery-images"></div>
+    <div
+      class="gallery-images"
+      id="gallery-images"
+    ></div>
 
   </div>
-
 </div>
+
+
+<!-- VIDEO MODAL -->
+<div
+  class="video-modal"
+  id="video-modal"
+  aria-hidden="true"
+>
+  <button
+    class="video-close"
+    id="video-close"
+    aria-label="Close video"
+  >
+    ✕
+  </button>
+
+  <div class="video-modal-inner">
+
+    <h2>Summer Project 2026</h2>
+
+    <div class="video-player">
+      <iframe
+        id="summer-video"
+        title="Summer Project, Salsa Partner Work 2026"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+  </div>
+</div>
+
+
+
 <!-- CONTACT -->
 <section class="contact" id="contact">
 
@@ -564,6 +630,10 @@
     ↑
     </a>
 <script>
+  /* =========================
+     MOBILE MENU
+  ========================= */
+
   const menuButton = document.querySelector(".menu-button");
   const navLinks = document.querySelector(".nav-links");
 
@@ -575,6 +645,10 @@
 
       menuButton.textContent = isOpen ? "✕" : "☰";
       menuButton.setAttribute("aria-expanded", isOpen.toString());
+      menuButton.setAttribute(
+        "aria-label",
+        isOpen ? "Close menu" : "Open menu"
+      );
     });
 
     navLinks.querySelectorAll("a").forEach((link) => {
@@ -582,9 +656,16 @@
         navLinks.classList.remove("open");
         menuButton.textContent = "☰";
         menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Open menu");
       });
     });
   }
+
+
+  /* =========================
+     PHOTO GALLERY
+  ========================= */
+
   const albums = {
     "summer-project": {
       title: "Summer Project, Salsa Partner Work 2026",
@@ -598,7 +679,7 @@
         "/images/gallery/summer-project/07.JPG",
         "/images/gallery/summer-project/08.JPG",
         "/images/gallery/summer-project/09.JPG"
-        ]
+      ]
     }
   };
 
@@ -609,11 +690,12 @@
 
   document.querySelectorAll(".album-card").forEach((card) => {
     card.addEventListener("click", () => {
-
       const albumName = card.dataset.album;
       const album = albums[albumName];
 
-      if (!album) return;
+      if (!album || !galleryModal || !galleryImages || !galleryTitle) {
+        return;
+      }
 
       galleryTitle.textContent = album.title;
       galleryImages.innerHTML = "";
@@ -633,9 +715,83 @@
     });
   });
 
-  galleryClose.addEventListener("click", () => {
-    galleryModal.classList.remove("open");
-    galleryModal.setAttribute("aria-hidden", "true");
+  if (galleryClose && galleryModal) {
+    galleryClose.addEventListener("click", () => {
+      galleryModal.classList.remove("open");
+      galleryModal.setAttribute("aria-hidden", "true");
+    });
+  }
+
+
+  /* =========================
+     VIDEO MODAL
+  ========================= */
+
+  const videoOpen = document.querySelector("#video-open");
+  const videoModal = document.querySelector("#video-modal");
+  const videoClose = document.querySelector("#video-close");
+  const summerVideo = document.querySelector("#summer-video");
+
+  const openVideo = () => {
+    if (!videoModal || !summerVideo) return;
+
+    summerVideo.src =
+      "https://www.youtube-nocookie.com/embed/t2ZANCqdozE?autoplay=1";
+
+    videoModal.classList.add("open");
+    videoModal.setAttribute("aria-hidden", "false");
+  };
+
+  const closeVideo = () => {
+    if (!videoModal || !summerVideo) return;
+
+    videoModal.classList.remove("open");
+    videoModal.setAttribute("aria-hidden", "true");
+
+    /* Stoppt das Video beim Schließen */
+    summerVideo.src = "";
+  };
+
+  if (videoOpen) {
+    videoOpen.addEventListener("click", openVideo);
+  }
+
+  if (videoClose) {
+    videoClose.addEventListener("click", closeVideo);
+  }
+
+  if (videoModal) {
+    videoModal.addEventListener("click", (event) => {
+      if (event.target === videoModal) {
+        closeVideo();
+      }
+    });
+  }
+
+
+  /* =========================
+     ESC KEY
+  ========================= */
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+
+    /* Mobile-Menü schließen */
+    if (navLinks && menuButton) {
+      navLinks.classList.remove("open");
+      menuButton.textContent = "☰";
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "Open menu");
+    }
+
+    /* Bildergalerie schließen */
+    if (galleryModal) {
+      galleryModal.classList.remove("open");
+      galleryModal.setAttribute("aria-hidden", "true");
+    }
+
+    /* Video schließen */
+    closeVideo();
   });
 </script>
   </body>
@@ -1493,13 +1649,148 @@ h3 {
   cursor: pointer;
 }
 
-.album-cover {
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background: #e3d7cf;
+/* VIDEO CARD */
+
+.video-card {
+  width: 100%;
+  padding: 0;
+  border: 0;
+
+  background: transparent;
+  color: #211d1b;
+
+  text-align: left;
+  cursor: pointer;
 }
 
-.album-cover img {
+.video-cover {
+  position: relative;
+
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+
+  background: #211d1b;
+}
+
+.video-cover img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  display: block;
+
+  transition: transform 0.4s ease;
+}
+
+.video-card:hover .video-cover img {
+  transform: scale(1.03);
+}
+
+.video-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 64px;
+  height: 64px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-left: 4px;
+
+  background: rgba(33, 29, 27, 0.85);
+  color: #f4eee8;
+
+  font-size: 1.5rem;
+}
+
+
+/* VIDEO MODAL */
+
+.video-modal {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  z-index: 120;
+
+  background: rgba(33, 29, 27, 0.97);
+
+  padding: 80px 6vw;
+
+  overflow-y: auto;
+}
+
+.video-modal.open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-modal-inner {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.video-modal h2 {
+  color: #f4eee8;
+
+  font-size: clamp(2rem, 4vw, 4rem);
+
+  margin-bottom: 30px;
+}
+
+.video-player {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+
+  background: #000;
+}
+
+.video-player iframe {
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+  display: block;
+}
+
+.video-close {
+  position: fixed;
+
+  top: 25px;
+  right: 30px;
+
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+  border: 1px solid #f4eee8;
+
+  background: #211d1b;
+  color: #f4eee8;
+
+  font-size: 1.3rem;
+  cursor: pointer;
+
+  z-index: 130;
+}
+
+.album-cover,
+.video-cover {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.album-cover img,
+.video-cover img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1597,6 +1888,37 @@ h3 {
   object-fit: contain;
   display: block;
 }
+
+<!-- VIDEO MODAL -->
+<div
+  class="video-modal"
+  id="video-modal"
+  aria-hidden="true"
+>
+  <button
+    class="video-close"
+    id="video-close"
+    aria-label="Close video"
+  >
+    ✕
+  </button>
+
+  <div class="video-modal-inner">
+
+    <h2>Summer Project 2026</h2>
+
+    <div class="video-player">
+      <iframe
+        id="summer-video"
+        title="Summer Project, Salsa Partner Work 2026"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+  </div>
+</div>
+
 /* MOBILE */
 
 /* GALLERY */
@@ -1617,6 +1939,8 @@ h3 {
   grid-template-columns: repeat(auto-fit, minmax(280px, 360px));
   justify-content: center;
   gap: 25px;
+
+  align-items: start;
 }
 
 .gallery-modal {
